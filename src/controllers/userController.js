@@ -12,21 +12,24 @@ exports.createUser = async (req, res) => {
 };
 
 exports.getUserByAccountNumber = async (req, res) => {
-  try {
-    const user = await User.findOne({ accountNumber: req.params.accountNumber });
-    if (!user) return res.status(404).send({ message: 'User not found' });
-    cacheUser(req.params.accountNumber, user);
-    res.send({ message: 'User retrieved successfully', user });
-  } catch (error) {
-    res.status(500).send({ message: 'Error retrieving user', error });
-  }
-};
+    try {
+      const user = await User.findOne({ accountNumber: req.params.accountNumber });
+      if (!user) return res.status(404).send({ message: 'User not found' });
+      
+    //   cacheUser(req.params.accountNumber, user);
+      
+      res.send({ message: 'User retrieved successfully', user });
+    } catch (error) {
+      res.status(500).send({ message: 'Error retrieving user', error });
+    }
+  };
+  
 
 exports.getUserByIdentityNumber = async (req, res) => {
   try {
     const user = await User.findOne({ identityNumber: req.params.identityNumber });
     if (!user) return res.status(404).send({ message: 'User not found' });
-    cacheUser(req.params.identityNumber, user);
+    // cacheUser(req.params.identityNumber, getUserByIdentityNumber);
     res.send({ message: 'User retrieved successfully', user });
   } catch (error) {
     res.status(500).send({ message: 'Error retrieving user', error });

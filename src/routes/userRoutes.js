@@ -7,8 +7,8 @@ const { cacheMiddleware } = require('../services/cacheService');
 
 router.post('/login', authController.login);
 router.post('/users' , userController.createUser);
-router.get('/users/account/:accountNumber', cacheMiddleware, verifyToken, userController.getUserByAccountNumber);
-router.get('/users/identity/:identityNumber', cacheMiddleware, verifyToken, userController.getUserByIdentityNumber);
+router.get('/users/account/:accountNumber',verifyToken, userController.getUserByAccountNumber);
+router.get('/users/identity/:identityNumber',verifyToken, userController.getUserByIdentityNumber);
 router.patch('/users/:id', verifyToken, userController.updateUser);
 router.delete('/users/:id', verifyToken, userController.deleteUser);
 
